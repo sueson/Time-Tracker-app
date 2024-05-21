@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Time tracking dashboard</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+    
+    .attribution{
+      margin-top: 200px;
+      margin-bottom: 50px;
+    }
+    #weeks{
+      display: flex;
+      gap: 70px;
+      background-color: hsl(235, 46%, 20%);
+      width: 420px;
+      position: absolute;
+      top: 90%;
+      left: 12%;
+    }
+    .container{
+      margin-left: 0px;
+    }
+    .contents{
+      width: 400px;
+    }
+    #info{
+      position: relative;
+    }
+
+    #personal-info{
+      background-color: hsl(246, 80%, 60%);
+      z-index: 2;
+    }
+
+    #work{
+      background-color: hsl(15, 100%, 70%);
+      position: relative;
+      left: 8%;
+      margin-top: 90px;
+      width: 430px;
+    }
+    #work-content{
+      position: absolute;
+      background-color: hsl(235, 46%, 20%);
+      top: 100%;
+      left: 0%;
+      z-index: 1;
+      width: 430px;
+    }
+    #work-hours{
+      position: absolute;
+      top: 70%;
+      left: 0%;
+      background-color: hsl(235, 46%, 20%);
+      padding-top: 60px;
+      width: 430px;
+    }
+
+    #play{
+      background-color: hsl(195, 74%, 62%);
+      position: relative;
+      margin-top: 150px;
+      width: 440px;
+      left: 10%;
+      padding-bottom: 0px;
+    }
+    #play-content{
+      background-color: hsl(235, 46%, 20%);
+      color: white;
+      position: absolute;
+      z-index: 1;
+      left: 0%;
+      top: 70%;
+    }
+    #play-hours{
+      background-color: hsl(235, 46%, 20%);
+      color: white;
+      position: absolute;
+      left: 0;
+      top: 150%;
+    }
+
+    #study{
+      background-color: hsl(348, 100%, 68%);
+      position: relative;
+      margin-top: 150px;
+      width: 440px;
+      left: 10%;
+    }
+    #study-content{
+      background-color: hsl(235, 46%, 20%);
+      color: white;
+      position: absolute;
+      left: 0%;
+      z-index: 1;
+    }
+    #study-hours{
+      background-color: hsl(235, 46%, 20%);
+      color: white;
+      position: absolute;
+      left: 0%;
+      top: 110%;
+    }
+
+    #excersice{
+      background-color: hsl(145, 58%, 55%);
+      position: relative;
+      margin-top: 120px;
+      width: 440px;
+      left: 10%;
+    }
+    #excersice-content{
+      background-color: hsl(235, 46%, 20%);
+      color: white;
+      position: absolute;
+      top: 30%;
+      left: 0%;
+      z-index: 1;
+    }
+    #excersice-hours{
+      background-color: hsl(235, 46%, 20%);
+      color: white;
+      position: absolute;
+      left: 0%;
+    }
+
+    #social{
+      background-color: hsl(264, 64%, 52%);
+      color: white;
+      position: relative;
+      left: 10%;
+      margin-top: 140px;
+      width: 440px;
+    }
+    #social-content{
+      background-color: hsl(235, 46%, 20%);
+      position: absolute;
+      top: 30%;
+      left: 0%;
+      z-index:1;
+    }
+    #social-hours{
+      background-color: hsl(235, 46%, 20%);
+      position: absolute;
+      top: 110%;
+      left: 0;
+    }
+
+    #selfcare{
+      background-color: hsl(43, 84%, 65%);
+      color: white;
+      position: relative;
+      left: 10%;
+      margin-top: 140px;
+      width: 440px;
+    }
+    #selfcare-content{
+      background-color: hsl(235, 46%, 20%);
+      position: absolute;
+      top: 30%;
+      left: 0%;
+      z-index: 1;
+    }
+    #selfcare-hours{
+      background-color: hsl(235, 46%, 20%);
+      position: absolute;
+      left: 0;
+      top: 110%;
+    }
+    .hours:hover{
+      cursor: pointer;
+      
+    }
+    #work,
+    #play,
+    #study,
+    #social,
+    #selfcare,
+    #excersice:hover{
+      cursor: pointer;
+    }
+
+    @media screen and (min-width: 600px){
+
+      #info{
+        padding: -40px;
+      }
+      .container{
+        margin-left: 0px;
+      }
+      .contents{
+        display: grid;
+        grid-template-columns: repeat(4, 200px);
+        grid-template-rows: repeat(2, auto);
+        grid-gap: 50px;
+      }
+      #personal-info{
+        background-color: hsl(246, 80%, 60%);
+      }
+      #img{
+         width: 60px;
+         border: 2px solid white;
+         border-radius: 50%;
+         
+      }
+      #side-content{
+        padding-top: 10px;
+      }
+      #weeks{
+        display: block;
+        background-color: hsl(235, 46%, 20%);
+        margin-top: 30px;
+        margin-left: 20px;
+      }
+
+      #work{
+        background-color: hsl(15, 100%, 70%);
+        width: 207px;
+        height: 0px;
+        margin-top: 50px;
+      }
+      #work-content, #work-hours{
+        width: 208px;
+      }
+      #play{
+        width: 207px;
+        height: 0px;
+        margin-top: 50px;
+        margin-left: -40px;
+      }
+      #play-content, #play-hours{
+        width: 208px;
+      }
+      
+      #study{
+        width: 207px;
+        height: 0px;
+        margin-top: 50px;
+        margin-left: -80px;
+      }
+
+      #excersice{
+        width: 207px;
+        height: 0;
+        margin-top: -80px;
+        margin-left: 250px;
+      }
+      
+      #social{
+        width: 207px;
+        height: 0px;
+        margin-top: -80px;
+        margin-left: 210px;
+      }
+      
+      #selfcare{
+        width: 207px;
+        height: 0px;
+        margin-top: -80px;
+        margin-left: 170px;
+      }
+      
+
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="contents">
+      <div class="row" id="info">
+        <div id="personal-info" class=" d-flex justify-content-center mt-5 mx-5 p-5 rounded-4 d-sm-block">
+          <img id="img" width="90" src="./images/image-jeremy.png" alt="image of user" >
+          <div id="side-content" class="mt-2 ms-3 text-light mx-md-0">
+            <p class="m-0">Report for</p>
+            <p class="h2">Jeremy Robson</p>
+          </div>
+          
+        </div>
+
+        <div id="weeks" class="d-flex d-sm-block justify-content-center rounded pt-5 py-sm-3 pb-sm-5 ps-sm-4 pb-2 text-light rounded-4">
+          <p class="hours" onclick="dailyUpdate()">Daily</p>
+          <p class="hours" onclick="weeklyUpdate()">Weekly</p>
+          <p class="hours" onclick="monthlyUpdate()">Monthly</p>
+        </div>
+      </div>
+
+      <div class="rounded-top-4 py-4" id="work">
+        <div id="work-content" class="col d-flex justify-content-between pt-4 rounded-5 col-sm-6">
+          <p class="mb-0 fw-medium text-light ms-4">Work</p>
+          <svg class="mt-2 me-4" width="21" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill="#BBC0FF" fill-rule="evenodd"/></svg>
+        </div>
+
+        <div id="work-hours" class="d-flex d-sm-block justify-content-between pb-4 text-light rounded-4 col-sm-6">
+          <p class="d-flex-col fs-1 ms-4 mt-sm-2"><span id="work-current">5</span>hrs</p>
+          <p class="mt-3 me-4 ms-sm-4">Previous - <span id="work-previous">7</span>hr</p>
+        </div>
+      </div>
+
+      <div class="row border rounded-top-4 py-4" id="play">
+        <div id="play-content" class="d-flex justify-content-between pt-4 rounded-top-4">
+          <p class="mb-0 mt-3 fw-medium ms-4">Play</p>
+          <svg class="mt-4 me-4" width="21" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill="#BBC0FF" fill-rule="evenodd"/></svg>
+        </div>
+
+        <div id="play-hours" class="d-flex d-sm-block justify-content-between rounded-bottom-4 pt-3 pb-4 mt-2">
+          <p class="d-flex-col fs-1 ms-4 mt-sm-1"><span id="play-current">5</span>hrs</p>
+          <p class="mt-3 me-4 ms-sm-4">Previous - <span id="play-previous">7</span>hr</p>
+        </div>
+      </div>
+
+      <div class="row border p-3 rounded-top-4 pb-5" id="study">
+        <div id="study-content" class="col d-flex justify-content-between pt-4 pb-2 mt-3 rounded-top-4">
+          <p class="mb-0 fw-medium ms-4 mt-sm-3">Study</p>
+          <svg class="mt-2 me-4 mt-sm-4" width="21" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill="#BBC0FF" fill-rule="evenodd"/></svg>
+        </div>
+
+        <div id="study-hours" class="d-flex d-sm-block justify-content-between mt-2 pb-4 rounded-bottom-4">
+          <p class="d-flex-col fs-1 ms-4 mt-sm-4"><span id="study-current">5</span>hrs</p>
+          <p class="mt-3 me-4 ms-sm-4">Previous - <span id="study-previous">7</span>hr</p>
+        </div>
+      </div>
+
+      <div class="row border p-4 rounded-top-4" id="excersice">
+        <div id="excersice-content" class="col d-flex justify-content-between mt-3 pt-4 rounded-top-4">
+          <p class="mb-0 fw-medium ms-4">Excercise</p>
+          <svg class="mt-2 me-4" width="21" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill="#BBC0FF" fill-rule="evenodd"/></svg>
+        </div>
+
+        <div id="excersice-hours" class="d-flex d-sm-block justify-content-between pt-5 mt-2 pb-4 rounded-4">
+          <p class="d-flex-col fs-1 ms-4"><span id="excercise-current">5</span>hrs</p>
+          <p class="mt-3 me-4 ms-sm-4">Previous - <span id="excercise-previous">7</span>hr</p>
+        </div>
+      </div>
+
+      <div class="row border p-4 rounded-top-4" id="social">
+        <div id="social-content" class="col d-flex justify-content-between mt-3 pt-4 rounded-top-4">
+          <p class="mb-0 fw-medium ms-4">Social</p>
+          <svg class="mt-2 me-4" width="21" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill="#BBC0FF" fill-rule="evenodd"/></svg>
+        </div>
+
+        <div id="social-hours" class="d-flex d-sm-block justify-content-between pt-4 pb-4  rounded-4">
+          <p class="d-flex-col fs-1 ms-4"><span id="social-current">5</span>hrs</p>
+          <p class="mt-3 me-4 ms-sm-4">Previous - <span id="social-previous">7</span>hr</p>
+        </div>
+      </div>
+
+      <div class="row border p-3 rounded-top-4" id="selfcare">
+        <div id="selfcare-content" class="col d-flex justify-content-between mt-3 pt-4 rounded-top-4">
+          <p class="mb-0 fw-medium ms-4">Self Care</p>
+          <svg class="mt-2 me-4" width="21" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill="#BBC0FF" fill-rule="evenodd"/></svg>
+        </div>
+
+        <div id="selfcare-hours" class="d-flex d-sm-block justify-content-between mt-3 pt-4 pb-4  rounded-4 ">
+          <p class="d-flex-col fs-1 ms-4"><span id="self-current">5</span>hrs</p>
+          <p class="mt-3 me-4 ms-sm-4">Previous - <span id="self-previous">7</span>hr</p>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Sueson</a>.
+  </div>
+  <script src="./app.js"></script>
+</body>
+</html>
